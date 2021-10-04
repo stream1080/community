@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
+/**
+ * 登录拦截器
+ */
 @Component
 public class LoginRequiredInterceptor implements HandlerInterceptor {
 
@@ -24,6 +27,7 @@ public class LoginRequiredInterceptor implements HandlerInterceptor {
             Method method = handlerMethod.getMethod();
             LoginRequired loginRequired = method.getAnnotation(LoginRequired.class);
             if (loginRequired != null && hostHolder.getUser() == null) {
+                // 重定向
                 response.sendRedirect(request.getContextPath() + "/login");
                 return false;
             }

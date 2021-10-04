@@ -29,6 +29,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * 用户信息维护
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController implements CommunityConstant {
@@ -68,6 +71,12 @@ public class UserController implements CommunityConstant {
     @Value("${quniu.bucket.header.url}")
     private String headerBucketUrl;
 
+    /**
+     * 用户信息设置
+     *
+     * @param model
+     * @return
+     */
     @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
     public String getSettingPage(Model model) {
