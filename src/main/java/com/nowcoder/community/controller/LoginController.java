@@ -30,6 +30,9 @@ import java.io.OutputStream;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 用户登录控制器
+ */
 @Controller
 public class LoginController implements CommunityConstant {
 
@@ -47,16 +50,33 @@ public class LoginController implements CommunityConstant {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * 获取登录页面
+     *
+     * @return
+     */
     @RequestMapping(path = "/register", method = RequestMethod.GET)
     public String getRegisterPage() {
         return "/site/register";
     }
 
+    /**
+     * 获取注册页面
+     *
+     * @return
+     */
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String getLoginPage() {
         return "/site/login";
     }
 
+    /**
+     * 注册账户
+     *
+     * @param model
+     * @param user
+     * @return
+     */
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String register(Model model, User user) {
         Map<String, Object> map = userService.register(user);
@@ -72,7 +92,14 @@ public class LoginController implements CommunityConstant {
         }
     }
 
-    // http://localhost:8080/community/activation/101/code
+    /**
+     * 激活链接：http://localhost:8080/community/activation/101/code
+     *
+     * @param model
+     * @param userId
+     * @param code
+     * @return
+     */
     @RequestMapping(path = "/activation/{userId}/{code}", method = RequestMethod.GET)
     public String activation(Model model, @PathVariable("userId") int userId, @PathVariable("code") String code) {
         int result = userService.activation(userId, code);
@@ -89,6 +116,11 @@ public class LoginController implements CommunityConstant {
         return "/site/operate-result";
     }
 
+    /**
+     * 生成验证码
+     *
+     * @param response
+     */
     @RequestMapping(path = "/kaptcha", method = RequestMethod.GET)
     public void getKaptcha(HttpServletResponse response/*, HttpSession session*/) {
         // 生成验证码
@@ -104,11 +136,12 @@ public class LoginController implements CommunityConstant {
         cookie.setMaxAge(60);
         cookie.setPath(contextPath);
         response.addCookie(cookie);
+
         // 将验证码存入Redis
         String redisKey = RedisKeyUtil.getKaptchaKey(kaptchaOwner);
         redisTemplate.opsForValue().set(redisKey, text, 60, TimeUnit.SECONDS);
 
-        // 将突图片输出给浏览器
+        // 将图片输出给浏览器
         response.setContentType("image/png");
         try {
             OutputStream os = response.getOutputStream();
