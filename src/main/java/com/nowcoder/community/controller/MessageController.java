@@ -20,6 +20,9 @@ import org.springframework.web.util.HtmlUtils;
 
 import java.util.*;
 
+/**
+ * 私信控制器
+ */
 @Controller
 public class MessageController implements CommunityConstant {
 
@@ -68,6 +71,14 @@ public class MessageController implements CommunityConstant {
         return "/site/letter";
     }
 
+    /**
+     * 获取私信详情
+     *
+     * @param conversationId
+     * @param page
+     * @param model
+     * @return
+     */
     @RequestMapping(path = "/letter/detail/{conversationId}", method = RequestMethod.GET)
     public String getLetterDetail(@PathVariable("conversationId") String conversationId, Page page, Model model) {
         // 分页信息
@@ -100,6 +111,12 @@ public class MessageController implements CommunityConstant {
         return "/site/letter-detail";
     }
 
+    /**
+     * 获取私信的目标
+     *
+     * @param conversationId
+     * @return
+     */
     private User getLetterTarget(String conversationId) {
         String[] ids = conversationId.split("_");
         int id0 = Integer.parseInt(ids[0]);
@@ -112,6 +129,12 @@ public class MessageController implements CommunityConstant {
         }
     }
 
+    /**
+     * 获取私信列表
+     *
+     * @param letterList
+     * @return
+     */
     private List<Integer> getLetterIds(List<Message> letterList) {
         List<Integer> ids = new ArrayList<>();
 
@@ -126,6 +149,13 @@ public class MessageController implements CommunityConstant {
         return ids;
     }
 
+    /**
+     * 发送私信
+     *
+     * @param toName
+     * @param content
+     * @return
+     */
     @RequestMapping(path = "/letter/send", method = RequestMethod.POST)
     @ResponseBody
     public String sendLetter(String toName, String content) {
