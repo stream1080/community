@@ -170,6 +170,11 @@ public class UserService implements CommunityConstant {
         return map;
     }
 
+    /**
+     * 退出登录
+     *
+     * @param ticket
+     */
     public void logout(String ticket) {
 //        loginTicketMapper.updateStatus(ticket, 1);
         String redisKey = RedisKeyUtil.getTicketKey(ticket);

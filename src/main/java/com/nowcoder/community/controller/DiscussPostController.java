@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
+
+/**
+ * 论坛帖子模块
+ */
 @Controller
 @RequestMapping("/discuss")
 public class DiscussPostController implements CommunityConstant {
@@ -46,6 +50,13 @@ public class DiscussPostController implements CommunityConstant {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * 发帖
+     *
+     * @param title
+     * @param content
+     * @return
+     */
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String addDiscussPost(String title, String content) {
@@ -77,6 +88,16 @@ public class DiscussPostController implements CommunityConstant {
         return CommunityUtil.getJSONString(0, "发布成功!");
     }
 
+    /**
+     * 获取帖子详情
+     * 评论
+     * 点赞
+     *
+     * @param discussPostId
+     * @param model
+     * @param page
+     * @return
+     */
     @RequestMapping(path = "/detail/{discussPostId}", method = RequestMethod.GET)
     public String getDiscussPost(@PathVariable("discussPostId") int discussPostId, Model model, Page page) {
         // 帖子

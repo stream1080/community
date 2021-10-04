@@ -25,6 +25,14 @@ public class CommunityUtil {
         return DigestUtils.md5DigestAsHex(key.getBytes());
     }
 
+    /**
+     * 封装Json数据返回结果
+     *
+     * @param code
+     * @param msg
+     * @param map
+     * @return
+     */
     public static String getJSONString(int code, String msg, Map<String, Object> map) {
         JSONObject json = new JSONObject();
         json.put("code", code);
