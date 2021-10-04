@@ -1,5 +1,8 @@
 package com.nowcoder.community.util;
 
+/**
+ * Redis的Key工具类
+ */
 public class RedisKeyUtil {
 
     private static final String SPLIT = ":";
