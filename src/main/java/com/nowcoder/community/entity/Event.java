@@ -3,6 +3,9 @@ package com.nowcoder.community.entity;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * kafka-封装消息实体
+ */
 public class Event {
 
     private String topic;
