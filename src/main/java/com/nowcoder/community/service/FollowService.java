@@ -21,6 +21,13 @@ public class FollowService implements CommunityConstant {
     @Autowired
     private UserService userService;
 
+    /**
+     * 关注-Redis事务
+     *
+     * @param userId
+     * @param entityType
+     * @param entityId
+     */
     public void follow(int userId, int entityType, int entityId) {
         redisTemplate.execute(new SessionCallback() {
             @Override
@@ -38,6 +45,13 @@ public class FollowService implements CommunityConstant {
         });
     }
 
+    /**
+     * 取消关注-Redis事务
+     *
+     * @param userId
+     * @param entityType
+     * @param entityId
+     */
     public void unfollow(int userId, int entityType, int entityId) {
         redisTemplate.execute(new SessionCallback() {
             @Override

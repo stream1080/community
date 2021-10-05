@@ -32,6 +32,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Future;
 
+/**
+ * kafka-消息的消费者
+ */
 @Component
 public class EventConsumer implements CommunityConstant {
 
@@ -64,6 +67,11 @@ public class EventConsumer implements CommunityConstant {
     @Autowired
     private ThreadPoolTaskScheduler taskScheduler;
 
+    /**
+     * 处理系统通知：评论，点赞，关注
+     *
+     * @param record
+     */
     @KafkaListener(topics = {TOPIC_COMMENT, TOPIC_LIKE, TOPIC_FOLLOW})
     public void handleCommentMessage(ConsumerRecord record) {
         if (record == null || record.value() == null) {

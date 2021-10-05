@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * 切面，扫描带Controller注解的类
+ * 统一异常处理
+ */
 @ControllerAdvice(annotations = Controller.class)
 public class ExceptionAdvice {
 

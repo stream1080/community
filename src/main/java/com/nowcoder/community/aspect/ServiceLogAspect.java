@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 统一日志管理
+ */
 //@Component
 //@Aspect
 public class ServiceLogAspect {
