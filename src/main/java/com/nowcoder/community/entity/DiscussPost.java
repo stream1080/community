@@ -7,6 +7,10 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
+/**
+ * 帖子实体类
+ * 加上@Document和@Field注解，让es分词识别
+ */
 @Document(indexName = "discusspost", type = "_doc", shards = 6, replicas = 3)
 public class DiscussPost {
 
