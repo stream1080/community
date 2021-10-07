@@ -15,6 +15,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 网站UV，DAU统计
+ * UV：独立访客
+ * DAU：日活用户
+ */
 @Service
 public class DataService {
 
