@@ -179,6 +179,12 @@ public class MessageController implements CommunityConstant {
         return CommunityUtil.getJSONString(0);
     }
 
+    /**
+     * 获取通知列表
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(path = "/notice/list", method = RequestMethod.GET)
     public String getNoticeList(Model model) {
         User user = hostHolder.getUser();
@@ -260,6 +266,14 @@ public class MessageController implements CommunityConstant {
         return "/site/notice";
     }
 
+    /**
+     * 获取通知详情
+     *
+     * @param topic
+     * @param page
+     * @param model
+     * @return
+     */
     @RequestMapping(path = "/notice/detail/{topic}", method = RequestMethod.GET)
     public String getNoticeDetail(@PathVariable("topic") String topic, Page page, Model model) {
         User user = hostHolder.getUser();

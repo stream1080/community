@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 获取当前用户的未读消息
+ */
 @Component
 public class MessageInterceptor implements HandlerInterceptor {
 

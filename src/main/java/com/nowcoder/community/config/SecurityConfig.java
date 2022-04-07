@@ -17,9 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Spring Security配置类
+ */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter implements CommunityConstant {
 
+    /**
+     * 静态资源不做权限校验
+     *
+     * @param web
+     * @throws Exception
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources/**");

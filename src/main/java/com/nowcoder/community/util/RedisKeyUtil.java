@@ -17,13 +17,13 @@ public class RedisKeyUtil {
     private static final String PREFIX_DAU = "dau";
     private static final String PREFIX_POST = "post";
 
-    // 某个实体的赞
+    // 给某个实体点赞，把点赞的userId存放在set中
     // like:entity:entityType:entityId -> set(userId)
     public static String getEntityLikeKey(int entityType, int entityId) {
         return PREFIX_ENTITY_LIKE + SPLIT + entityType + SPLIT + entityId;
     }
 
-    // 某个用户的赞
+    // 某个用户获得的赞
     // like:user:userId -> int
     public static String getUserLikeKey(int userId) {
         return PREFIX_USER_LIKE + SPLIT + userId;

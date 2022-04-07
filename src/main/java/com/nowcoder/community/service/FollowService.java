@@ -24,9 +24,9 @@ public class FollowService implements CommunityConstant {
     /**
      * 关注-Redis事务
      *
-     * @param userId
-     * @param entityType
-     * @param entityId
+     * @param userId        关注的userId
+     * @param entityType    被关注的实体类型：用户，帖子，评论
+     * @param entityId      被关注的实体的id
      */
     public void follow(int userId, int entityType, int entityId) {
         redisTemplate.execute(new SessionCallback() {
@@ -36,8 +36,9 @@ public class FollowService implements CommunityConstant {
                 String followerKey = RedisKeyUtil.getFollowerKey(entityType, entityId);
 
                 operations.multi();
-
+                // 关注，将关注的实体id加入zset
                 operations.opsForZSet().add(followeeKey, entityId, System.currentTimeMillis());
+                // 被关注：将被关注的实体的粉丝加入zset
                 operations.opsForZSet().add(followerKey, userId, System.currentTimeMillis());
 
                 return operations.exec();

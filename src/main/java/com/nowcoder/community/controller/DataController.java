@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
+/**
+ * 网站数据统计
+ */
 @Controller
 public class DataController {
 
